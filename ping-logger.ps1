@@ -108,4 +108,4 @@ while($true)
 }
 
 Wait-Job -Name Ping-Logger Test
-Invoke-Item C:\Users\gguaracha\Documents\Scripts\Untitled2.ps1
+Invoke-Item C:\Users\$USER\Documents\Scripts\Untitled2.ps1
