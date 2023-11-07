@@ -30,7 +30,7 @@ hostnmame,X.X.X.X,YYYY/MM/MM,HH:MM:SS,ms,username
 
 # File name variables:
 $hostname = $env:computername 
-$PACS = Get-Content "C:\Users\gguaracha\Documents\Scripts\F5LB.txt"
+$PACS = Get-Content "C:\Users\$USER\Documents\Scripts\F5LB.txt"
 
 
 # Time stamp format for the file name:
@@ -44,7 +44,7 @@ $logname = $DefaulLogName
 
 
 # CSV file setup:
-add-content C:\Users\gguaracha\Documents\Scripts\$logname "Rad WS,PACS,Latency,Date,Time,User";
+add-content C:\Users\$USER\Documents\Scripts\$logname "Rad WS,PACS,Latency,Date,Time,User";
 
 
 # Start time assumes successful ping to calculate seconds
@@ -74,7 +74,7 @@ while($true)
                 # Log failure to file.
                 $YEAR = get-date -format yyyy-MM-dd;
                 $TIME = get-date -format HH:mm:ss
-                add-content C:\Users\gguaracha\Documents\Scripts\$logname "$hostname,$PACS,>50,$YEAR,$TIME,$env:USERNAME";
+                add-content C:\Users\$USER\Documents\Scripts\$logname "$hostname,$PACS,>50,$YEAR,$TIME,$env:USERNAME";
                 
                 # In case the NIC goes down, delay here so highest resolution of outage is 5 seconds.
                 start-sleep -s 1
@@ -96,7 +96,7 @@ while($true)
                 # Log success to file.
                 $YEAR = get-date -format yyyy-MM-dd;
                 $TIME = get-date -format HH:mm:ss;
-                 add-content C:\Users\gguaracha\Documents\Scripts\$logname "$hostname,$PACS,$pingtime,$YEAR,$TIME,$env:USERNAME";
+                 add-content C:\Users\$USER\Documents\Scripts\$logname "$hostname,$PACS,$pingtime,$YEAR,$TIME,$env:USERNAME";
 
                 # Pause for 1 second to prevent low latency loop being too quick.
                 start-sleep -s 1
